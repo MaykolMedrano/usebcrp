@@ -1,0 +1,10 @@
+v 3
+d Maykol Medrano, National University of San Antonio Abad of Cusco (maykolmedrano35@gmail.com)
+p usebcrp USEBCRP - Import data from the Peruvian Central Bank BCRP)
+
+* l word-to-show path-or-url [description]
+* t: Directories within site:
+* t path [description]
+* Packages:
+* p pkgname [description]
+

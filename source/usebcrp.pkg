@@ -1,0 +1,15 @@
+v 3
+
+d usebcrp. Import data from the Peruvian Central Bank BCRP)
+d
+d Author: Maykol Medrano.
+d
+d KW: use
+d KW: usebcrp
+d KW: import
+d
+d Requires: Stata version 15 and Windows 10
+d
+d Distribution-Date: 2020
+f usebcrp.ado
+f usebcrp.sthlp
