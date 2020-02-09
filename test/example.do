@@ -1,5 +1,5 @@
 discard
-adopath + "c:/git/bcrpuse/source"
+adopath + "c:/git/usebcrp/source"
 
 * Setup
 	cls
