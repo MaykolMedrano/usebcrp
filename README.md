@@ -3,8 +3,8 @@
 ## Installation
 
 ```
-cap ado uninstall `usebcrp` 
-net install `usebcrp` from(https://https://github.com/MaykolMedrano/usebcrp/raw/master/source/)
+cap ado uninstall usebcrp 
+net install usebcrp, from(https://raw.githubusercontent.com/MaykolMedrano/usebcrp/master/source)
 ```
 
 ## Usage
