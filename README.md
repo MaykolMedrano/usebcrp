@@ -17,7 +17,7 @@ usebcrp PN00001MM, range(2001m1 2016m12)
 
 ## Advanced Usage
 
-- Use a folder as cache, to avoid downloading the dataset every time: `bcrpuse	PN00001MM, range(2001m1 2016m12) cache(c:/somepath)`
+- Use a folder as cache, to avoid downloading the dataset every time: `usebcrp	PN00001MM, range(2001m1 2016m12) cache(c:/somepath)`
 - Can also manage different frequencies (daily, monthly, quarterly, annual).
 
 - More information in the help file
