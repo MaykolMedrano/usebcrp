@@ -56,5 +56,4 @@ The command works perfectly in Windows 10, but if your computer is another versi
 
 {p_end}
 
-{pstd}
 
