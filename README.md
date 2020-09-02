@@ -6,6 +6,9 @@
 cap ado uninstall usebcrp 
 net install usebcrp, from(https://raw.githubusercontent.com/MaykolMedrano/usebcrp/master/source)
 ```
+## System Requirements
+
+Windows 10
 
 ## Usage
 
