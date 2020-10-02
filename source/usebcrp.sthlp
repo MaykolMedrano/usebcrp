@@ -54,6 +54,9 @@ It follows the API described at
 {pstd}
 The command works perfectly in Windows 10, but if your computer is another version it is necessary to install {browse "https://curl.haxx.se":Curl}.
 
-{p_end}
+{title:Author}
 
+{pstd}
+Maykol Medrano, National University of San Antonio Abad of Cusco. {browse "mailto:maykolmedrano35@gmail.com":maykolmedrano35@gmail.com}
+{p_end}
 
