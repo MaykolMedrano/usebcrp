@@ -11,6 +11,7 @@ from tqdm import tqdm
 from .metadata import Metadata
 from .utils import ParseDates, _export_df
 
+
 class BCRP(Metadata, ParseDates):
     def __init__(
         self,
@@ -238,7 +239,7 @@ class BCRP(Metadata, ParseDates):
                       Export format: "csv", "xlsx", or "dta" (default is "csv")
         """
         return _export_df(self.cachepath, df, filename, fmt, self.verbose)
-    
+
     def browse(self, text_inf):
         """We use the text_inf for searching the codes and names of series's BCRP
 

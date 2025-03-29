@@ -1,6 +1,8 @@
-import pandas as pd
-import re
 import os
+import re
+
+import pandas as pd
+
 
 class ParseDates:
     def __init__(self, date_str: str):
@@ -43,9 +45,15 @@ class ParseDates:
         formatted_date = f"{eng_month}.01.{year}"
 
         return pd.to_datetime(formatted_date, format="%b.%d.%Y", errors="coerce")
-    
 
-def _export_df(cachepath = None, df: pd.DataFrame = None, filename: str = "Results", fmt: str = "csv", verbose: bool = False):
+
+def _export_df(
+    cachepath=None,
+    df: pd.DataFrame = None,
+    filename: str = "Results",
+    fmt: str = "csv",
+    verbose: bool = False,
+):
     """
     Export the DataFrame to a file in CSV, XLSX, or DTA format.
     The file is saved in the cachepath if provided.

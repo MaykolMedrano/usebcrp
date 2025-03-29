@@ -1,0 +1,3 @@
+[flake8]
+exclude = __pycache__, built, build, venv, docs, example.py, ejemplo.py, setup.py
+max-line-length = 210

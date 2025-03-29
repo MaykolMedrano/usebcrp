@@ -1,4 +1,5 @@
 import pathlib
+
 import setuptools
 
 HERE = pathlib.Path(__file__).parent
@@ -8,10 +9,10 @@ from usebcrp.__version__ import __version__ as pkgVersion
 
 setuptools.setup(
     name="usebcrp",
-    version = pkgVersion,
-    author = "Jelsin Palomino & Maykol Medrano",
+    version=pkgVersion,
+    author="Jelsin Palomino & Maykol Medrano",
     author_email="maykolmedrano35@gmail.com & jstpalomino@hotmail.com",
-    description = "Python library that consumes the BCRP API, you can query the series and define the time range.",
+    description="Python library that consumes the BCRP API, you can query the series and define the time range.",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/MaykolMedrano/usebcrp",
@@ -23,5 +24,11 @@ setuptools.setup(
         "Intended Audience :: Education",
     ],
     install_requires=["pandas", "requests", "tqdm", "openpyxl"],
-    keywords=['Perú', 'Peru', 'BCRP', 'Banco Central de Reservas del Perú', 'Series de tiempo'], 
+    keywords=[
+        "Perú",
+        "Peru",
+        "BCRP",
+        "Banco Central de Reservas del Perú",
+        "Series de tiempo",
+    ],
 )

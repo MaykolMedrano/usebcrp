@@ -1,6 +1,7 @@
+import io
+
 import pandas as pd
 import requests
-import io
 
 # Variable global para almacenar en caché el DataFrame descargado
 _BCRP_DATA_CACHE = None
@@ -47,7 +48,6 @@ class Metadata:
                 f"Error al descargar los datos. Código de estado: {response.status_code}"
             )
 
-
     def _browse(self, cache: bool = True) -> pd.DataFrame:
         """
         Busca series en el DataFrame de metadatos usando un orden de prioridad:
@@ -93,7 +93,9 @@ class Metadata:
         for col in priority_columns:
             if col in df.columns:
                 result = df[
-                    df[col].astype(str).str.contains(self.text_inf, case=False, na=False)
+                    df[col]
+                    .astype(str)
+                    .str.contains(self.text_inf, case=False, na=False)
                 ].reset_index(drop=True)
                 if not result.empty:
                     return result
