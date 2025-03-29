@@ -1,8 +1,6 @@
 import hashlib
-import io
 import json
 import os
-import re
 import time
 from typing import List, Optional
 
@@ -11,7 +9,7 @@ import requests
 from tqdm import tqdm
 
 from .metadata import Metadata
-from .utils import ParseDates
+from .utils import ParseDates, _export_df
 
 class BCRP(Metadata, ParseDates):
     def __init__(
@@ -239,23 +237,7 @@ class BCRP(Metadata, ParseDates):
         fmt         : str, optional
                       Export format: "csv", "xlsx", or "dta" (default is "csv")
         """
-        if self.cachepath:
-            filepath = os.path.join(self.cachepath, f"{filename}.{fmt}")
-        else:
-            filepath = f"{filename}.{fmt}"
-
-        fmt = fmt.lower()
-        if fmt == "csv":
-            df.to_csv(filepath)
-        elif fmt == "xlsx":
-            df.to_excel(filepath)
-        elif fmt == "dta":
-            df.to_stata(filepath)
-        else:
-            raise ValueError("Unsupported format. Use 'csv', 'xlsx', or 'dta'.")
-
-        if self.verbose:
-            print(f"Exported data in {fmt.upper()} format to: {filepath}")
+        return _export_df(self.cachepath, df, filename, fmt, self.verbose)
     
     def browse(self, text_inf):
         """We use the text_inf for searching the codes and names of series's BCRP
