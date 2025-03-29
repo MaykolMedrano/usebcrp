@@ -1,7 +1,9 @@
-import os
-import requests
 import hashlib
+import os
 import time
+
+import requests
+
 
 class ConectionBCRP:
 
@@ -56,4 +58,4 @@ class ConectionBCRP:
             with open(cache_file, "rb") as f:
                 content = f.read()
         # print(type(content))
-        return content 
+        return content

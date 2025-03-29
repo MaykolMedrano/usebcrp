@@ -1,16 +1,13 @@
-import hashlib
 import json
 import os
-import time
 from typing import List, Optional
 
 import pandas as pd
-import requests
 from tqdm import tqdm
 
+from .conection import ConectionBCRP
 from .metadata import Metadata
 from .utils import ParseDates, _export_df
-from .conection import ConectionBCRP
 
 
 class BCRP(Metadata, ParseDates, ConectionBCRP):
@@ -63,8 +60,10 @@ class BCRP(Metadata, ParseDates, ConectionBCRP):
         """
         if not series:
             raise ValueError("At least one series code is required.")
-        
-        content = ConectionBCRP(series=series, range=range).conectionAPI(self.cachepath, self.verbose, self.sleep_sec)
+
+        content = ConectionBCRP(series=series, range=range).conectionAPI(
+            self.cachepath, self.verbose, self.sleep_sec
+        )
 
         data = json.loads(content.decode("utf-8", errors="replace"))
         if "periods" not in data:
