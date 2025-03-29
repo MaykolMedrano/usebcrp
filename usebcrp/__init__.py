@@ -10,9 +10,10 @@ from tqdm import tqdm
 
 from .metadata import Metadata
 from .utils import ParseDates, _export_df
+from .conection import ConectionBCRP
 
 
-class BCRP(Metadata, ParseDates):
+class BCRP(Metadata, ParseDates, ConectionBCRP):
     def __init__(
         self,
         cachepath: Optional[str] = None,
@@ -62,53 +63,8 @@ class BCRP(Metadata, ParseDates):
         """
         if not series:
             raise ValueError("At least one series code is required.")
-
-        # Determine date range parts
-        start, end = None, None
-        if range:
-            parts = range.split()
-            if len(parts) == 2:
-                start, end = parts
-            elif len(parts) == 1:
-                start = parts[0]
-
-        base_url = "https://estadisticas.bcrp.gob.pe/estadisticas/series/api"
-        series_str = "-".join(series)
-        url_parts = [base_url, series_str, "json"]
-        if start:
-            url_parts.append(start)
-            if end:
-                url_parts.append(end)
-        elif end:
-            url_parts.append(end)
-        url = "/".join(url_parts)
-
-        if self.verbose:
-            print(f"[URL] {url}")
-
-        download = True
-        cache_file = None
-        if self.cachepath:
-            h = hashlib.sha1(url.encode("utf-8")).hexdigest()
-            cache_file = os.path.join(self.cachepath, f"bcrp-{h}.json")
-            if os.path.exists(cache_file):
-                if self.verbose:
-                    print(f" - Using cached file: {cache_file}")
-                download = False
-
-        if download:
-            if self.verbose:
-                print(" - Downloading data...")
-            response = requests.get(url)
-            response.raise_for_status()
-            content = response.content
-            if cache_file:
-                with open(cache_file, "wb") as f:
-                    f.write(content)
-            time.sleep(self.sleep_sec)
-        else:
-            with open(cache_file, "rb") as f:
-                content = f.read()
+        
+        content = ConectionBCRP(series=series, range=range).conectionAPI(self.cachepath, self.verbose, self.sleep_sec)
 
         data = json.loads(content.decode("utf-8", errors="replace"))
         if "periods" not in data:
