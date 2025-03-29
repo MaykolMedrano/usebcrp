@@ -1,0 +1,10 @@
+# Archivos
+
+ejemplo.py
+usebcrp.ipynb
+
+# Carpetas
+\venv
+\cache_bcrp
+\cache_client_table_bcrp
+\__pycache__
