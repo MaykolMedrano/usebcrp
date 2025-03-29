@@ -11,14 +11,14 @@ import requests
 from tqdm import tqdm
 
 from .metadata import Metadata
+from .utils import ParseDates
 
-class BCRP(Metadata):
+class BCRP(Metadata, ParseDates):
     def __init__(
         self,
         cachepath: Optional[str] = None,
         verbose: bool = False,
         sleep_sec: float = 1.0,
-        text_inf: str = None,
     ):
         """
         Initialize the BCRP client.
@@ -35,51 +35,12 @@ class BCRP(Metadata):
         text_inf  : str, optional
                     This text is for searching the names and codes of series's BCRP
         """
-        # Metadata.__init__(self, text_inf=text_inf)
         self.cachepath = cachepath
         self.verbose = verbose
         self.sleep_sec = sleep_sec
 
         if self.cachepath:
             os.makedirs(self.cachepath, exist_ok=True)
-
-    @staticmethod
-    def parse_spanish_date(date_str: str) -> str:
-        """
-        Convert a Spanish month-year string (e.g., "Ene2020" or "Ene.2020") into a pandas Timestamp.
-
-        Parameters
-        ----------
-        date_str : str
-                   A string representing the month and year in Spanish.
-
-        Returns
-        -------
-        pd.Timestamp
-                    A pandas Timestamp or pd.NaT if parsing fails.
-        """
-        month_map = {
-            "Ene": "Jan",
-            "Feb": "Feb",
-            "Mar": "Mar",
-            "Abr": "Apr",
-            "May": "May",
-            "Jun": "Jun",
-            "Jul": "Jul",
-            "Ago": "Aug",
-            "Sep": "Sep",
-            "Oct": "Oct",
-            "Nov": "Nov",
-            "Dic": "Dec",
-        }
-        match = re.match(r"([A-Za-z]+)\.?(\d{4})", date_str.strip())
-        if not match:
-            return pd.NaT
-        month_abbr, year = match.groups()
-        month_abbr = month_abbr[:3].capitalize()
-        eng_month = month_map.get(month_abbr, month_abbr)
-        formatted_date = f"{eng_month}.01.{year}"
-        return pd.to_datetime(formatted_date, format="%b.%d.%Y", errors="coerce")
 
     def stat(self, series: List[str], range: Optional[str] = None) -> pd.DataFrame:
         """
@@ -167,7 +128,7 @@ class BCRP(Metadata):
         for period in tqdm(
             data["periods"], desc="Processing periods", total=len(data["periods"])
         ):
-            date_val = self.parse_spanish_date(period["name"])
+            date_val = ParseDates(period["name"])._parse_spanish_date()
             values = period["values"]
             row = {"time": date_val}
             for i, value in enumerate(values):
