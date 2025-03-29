@@ -8,3 +8,4 @@ usebcrp.ipynb
 \cache_bcrp
 \cache_client_table_bcrp
 \__pycache__
+\.pytest_cache
