@@ -5,7 +5,9 @@ usebcrp.ipynb
 
 # Carpetas
 \venv
+\venv_testing
 \cache_bcrp
 \cache_client_table_bcrp
 \__pycache__
 \.pytest_cache
+\usebcrp.egg-info

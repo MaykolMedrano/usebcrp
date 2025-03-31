@@ -5,11 +5,11 @@ import setuptools
 HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
-from usebcrp.__version__ import __version__ as pkgVersion
+# from usebcrp.__version__ import __version__ as pkgVersion
 
 setuptools.setup(
     name="usebcrp",
-    version=pkgVersion,
+    version="0.0.1",
     author="Jelsin Palomino & Maykol Medrano",
     author_email="maykolmedrano35@gmail.com & jstpalomino@hotmail.com",
     description="Python library that consumes the BCRP API, you can query the series and define the time range.",

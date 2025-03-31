@@ -1,285 +1,347 @@
-
+<a id="readme-top"></a>
 
 [![Contributors][contributors-shield]][contributors-url]
-[![License][license-shield]][license-url]
-[![Stargazers][stars-shield]][stars-url]
 [![Forks][forks-shield]][forks-url]
-[![DOI](https://zenodo.org/badge/911861535.svg)](https://doi.org/10.5281/zenodo.15029825)
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![Unlicense License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-# ENAHODATA
-Esta libreria consta de un comando para extraer datos de la Encuesta Nacional de Hogares (ENAHO) del Instituto Nacional de Estadística e Informática (INEI) de Perú que se realiza cada año desde el 2004. Esta encuesta esta organizado por modulos.
 
-> **Ficha técnica**: [Consulta aquí](https://proyectos.inei.gob.pe/iinei/srienaho/Descarga/FichaTecnica/498-Ficha.pdf)
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/MaykolMedrano/usebcrp">
+    <img src="https://i.ibb.co/MDV7cGfC/5134453181701533346-1.png" alt="Logo" width="80" height="80">
+  </a>
 
-Contenido
----------
+  <h3 align="center">USEBCRP</h3>
 
-- [Modulos de la encuesta (Corte transversal)](#corte-transversal)
-- [Modulos de la encuesta (Datos de panel)](#datos-de-panel)
-- [I. Instalación](#i-instalacion)
-- [II. Descripción de la librería](#ii-descripción-de-la-libreria)
-- [III. Ejemplo](#iii-ejemplo-práctico)
-- [IV. Como citar este repositorio](#iv-como-citar-este-repositorio)
-- [Licencia](#licencia)
-
-### Modulos de la Encuesta Nacional de Hogares (ENAHO)
-
-Los modulos son los siguientes:
-
-#### Corte transversal
-
-Nro|Código Módulo|Modulo|Preguntas
-:-------|:-------|:---------|:------
-1|`01`|Características de la Vivienda y del Hogar|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=01&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Características+de+la+Vivienda+y+del+Hogar" target="_blank">`Preguntas`</a>
-2|`02`|Características de los Miembros del Hogar|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=02&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Características+de+los+Miembros+del+Hogar" target="_blank">`Preguntas`</a>
-3|`03`|Educación|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=03&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Educación" target="_blank">`Preguntas`</a>
-4|`04`|Salud|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=04&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Salud" target="_blank">`Preguntas`</a>
-5|`05`|Empleo e Ingresos|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=05&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Empleo+e+Ingresos" target="_blank">`Preguntas`</a>
-6|`07`|	Gastos en Alimentos y Bebidas (Módulo 601)|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=07&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Gastos+en+Alimentos+y+Bebidas+(Módulo+601)" target="_blank">`Preguntas`</a>
-7|`08`|Instituciones Beneficas|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=08&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Instituciones+Beneficas" target="_blank">`Preguntas`</a>
-8|`09`|Mantenimiento de la Vivienda|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=09&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Mantenimiento+de+la+Vivienda" target="_blank">`Preguntas`</a>
-9|`10`|Transportes y Comunicaciones|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=10&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Transportes+y+Comunicaciones" target="_blank">`Preguntas`</a>
-10|`11`|Servicios a la Vivienda|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=11&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Servicios+a+la+Vivienda" target="_blank">`Preguntas`</a>
-11|`12`|Esparcimiento , Diversion y Servicios de Cultura|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=12&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Esparcimiento+,+Diversion+y+Servicios+de+Cultura" target="_blank">`Preguntas`</a>
-12|`13`|Vestido y Calzado|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=13&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Vestido+y+Calzado" target="_blank">`Preguntas`</a>
-13|`15`|Gastos de Transferencias|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=15&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Gastos+de+Transferencias" target="_blank">`Preguntas`</a>
-14|`16`|Muebles y Enseres|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=16&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Muebles+y+Enseres" target="_blank">`Preguntas`</a>
-15|`17`|Otros Bienes y Servicios|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=17&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Otros+Bienes+y+Servicios" target="_blank">`Preguntas`</a>
-16|`18`|Equipamiento del Hogar|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=18&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Equipamiento+del+Hogar" target="_blank">`Preguntas`</a>
-17|`22`|Producción Agrícola|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=22&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Producción+Agrícola" target="_blank">`Preguntas`</a>
-18|`23`|Subproductos Agricolas|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=23&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Subproductos+Agricolas" target="_blank">`Preguntas`</a>
-19|`24`|Producción Forestal|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=24&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Producción+Forestal" target="_blank">`Preguntas`</a>
-20|`25`|Gastos en Actividades Agricolas y/o Forestales|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=25&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Gastos+en+Actividades+Agricolas+y/o+Forestales" target="_blank">`Preguntas`</a>
-21|`26`|Producción Pecuaria|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=26&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Producción+Pecuaria" target="_blank">`Preguntas`</a>
-22|`27`|Subproductos Pecuarios|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=27&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Subproductos+Pecuarios" target="_blank">`Preguntas`</a>
-23|`28`|Gastos en Actividades Pecuarias|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=28&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Gastos+en+Actividades+Pecuarias" target="_blank">`Preguntas`</a>
-24|`34`|Sumarias ( Variables Calculadas )|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=34&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Sumarias+(+Variables+Calculadas+)" target="_blank">`Preguntas`</a>
-25|`37`|Programas Sociales (Miembros del Hogar)|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=37&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Programas+Sociales++(Miembros+del+Hogar)" target="_blank">`Preguntas`</a>
-26|`77`|Ingresos del Trabajador Independiente|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=77&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Ingresos+del+Trabajador+Independiente" target="_blank">`Preguntas`</a>
-27|`78`|Bienes y Servicios de Cuidados Personales|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=78&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Bienes+y+Servicios+de+Cuidados+Personales" target="_blank">`Preguntas`</a>
-28|`84`|Participación Ciudadana|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=84&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Participación+Ciudadana" target="_blank">`Preguntas`</a>
-29|`85`|Gobernabilidad, Democracia y Transparencia|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=85&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Gobernabilidad,+Democracia+y+Transparencia" target="_blank">`Preguntas`</a>
-30|`1825`|Beneficiarios de Instituciones sin fines de lucro: Olla comun|<a href="https://proyectos.inei.gob.pe/microdatos/Detalle_Encuesta.asp?CU=19558&CodEncuesta=906&CodModulo=1825&NombreEncuesta=Condiciones+de+Vida+y+Pobreza+-+ENAHO&NombreModulo=Beneficiarios+de+Instituciones+sin+fines+de+lucro:+Olla+Común" target="_blank">`Preguntas`</a>
-
-#### Datos de panel
-
-Nro|Año|Código Módulo|Modulo
-:-------|:-------|:-------|:---------
-1|2023-2018|`1474`|Características de la Vivienda y del Hogar
-2|2023-2018|`1475`|Educación
-3|2023-2018|`1476`|Salud
-4|2023-2018|`1477`|Empleo e Ingresos
-5|2023-2018|`1478`|Sumarias ( Variables Calculadas )
-6|2023-2018|`1479`|Características de los Miembros del Hogar
-7|2017-2011|`01`|Características de la Vivienda y del Hogar	
-8|2017-2011|`03`|Educación
-9|2017-2011|`04`|Salud
-10|2017-2011|`05`|Empleo e Ingresos
-11|2017-2011|`34`|Sumarias( Variables calculadas )
-12|2017-2011|`1314`|Características de los Miembros del Hogar
-## I. Instalacion
-
-#### Requerimientos
-Para el correcto funcionamiento del paquete y sus respectivos modulos, es necesario tener instalado los siguientes paquetes adicionales:
-
-- requests
-- tqdm
-
-#### Iniciamos la instalacion
-```python
-pip install enahodata
-```
-
-## II. Descripción de la libreria 
-
-#### 1.- Importamos la libreria
-
-```python
-from enahodata import enahodata 
-import os
-```
-
-- En esta etapa importamos las librerias que se usaran, **enahodata** para extraer el comando **enahodata**.
-- También importamos **os** para manejar las carpetas.
-
-#### 2.- Definimos el directorio de trabajo
-```python
-os.chdir("/path/to/your/directory")
-```
-- Usamos este código para definir el directorio de trabajo donde se trabajará.
-
-#### 3.- Definimos los paramétros del comando **_enahodata_**
-El comando es enahodata, y tiene los siguientes parametros:
-```python
-enahodata(
-    modulos: list[str]=["", "", "", ...],
-    anios: list[str]=["", "", "", ...],
-    descomprimir: bool = False,
-    only_dta: bool = False
-    overwrite: bool = False,
-    output_dir: str = "NOMBRE_CARPETA",   
-    panel: bool = True or False
-)
-```
-- **modulos:** en este parámetro ponemos la lista de modulos que se quiere descargar. Se puede extraer el codigo de la columna _Código Módulo_.
-```python
-enahodata(
-    modulos = ["01", "02", "03",...],
-    ... 
-)
-```
-
-- **anios:** en este parámetro se pone la lista de años.
-```python
-enahodata(
-    ...
-    anios = ["2020", "2021", "2022",...]
-    ...
-)
-```
-- **descomprimir:** con esta opción se selecciona _True_ o _False_ para que se descomprima o no, respectivamente.
-```python
-enahodata(
-    ...
-    descomprimir:bool = ...,
-    ...
-)
-```
-- **only_data:** con este parametro del comando seleccionamos si se enfocara solo en los archivos _.dta_ o no. Tiene dos valores _True_ o _False_.
-```python
-enahodata(
-    ...
-    only_dta: bool = ...,
-    ...
-)
-```
-- **overwrite:** con esta opción se indica si se reemplaza los archivos ya existentes o no. Tiene dos valores _True_ o _False_.
-```python
-enahodata(
-    ...
-    overwrite: bool = ...,
-    ...
-)
-```
-- **output_dir:** con este parámetro se indica el nombre que tendra la carpeta donde se almacenaran los archivos de los modulos descargados de la ENAHO. 
-```python
-enahodata(
-    ...
-    output_dir: str = "NOMBRE_CARPETA",   
-)
-```
-
-- **panel:** con este parámetro se indica si se descargará los datasets de corte transversal o los de panel data. Tiene dos valores _True_ (datos de panel) y _False_ (corte transversal). 
-```python
-enahodata(
-    ...
-    panel: bool = ...,   
-)
-```
+  <p align="center">
+    Una biblioteca de Python que consume la API del Banco Central de Reservas del Perú (BCRP). Para descarga de series y rangos de tiempo determinados.
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    &middot;
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    &middot;
+    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
 
 
-#### 4.- Plantilla completa
 
-```python
-from enahodata import enahodata 
-import os
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-os.chdir("/path/to/your/directory")
 
-enahodata(
-    modulos = ["01", "02", "03",...],,
-    anios = list[str],
-    descomprimir = ...,
-    only_dta = ...,
-    overwrite = ...,
-    output_dir = "NOMBRE_CARPETA",   
-    panel = ...,
-)
 
-```
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-## III. Ejemplo práctico
+![Product Name Screen Shot][product-screenshot]
 
-Se necesita descargar de los años 2022 y 2023, los siguientes módulos de la Encuesta Nacional de Hogares de Perú:
-- Características de la Vivienda y del Hogar
-- Educación 
-- Salud
+Esta biblioteca de Python, dedicado a consumir el API del Banco Central de Reservas del Perú (BCRP) y que descarga series de datos publicados desde la institución. 
 
-Entonces, con la información anterior revisamos el codigo de cada modulo. En este caso los codigos son los siguientes:
-- `01` : Características de la vivienda y del hogar
-- `03` : Educación
-- `04` : Salud
+El API tiene la siguiente estructura:
 
-Luego, realizamos lo siguiente:
-```python
-pip install enahodata
-```
-En otro archivo `ejemplo.py`, por ejemplo escribimos el siguiente código:
-```python
-from enahodata import enahodata
-import os
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/[códigos de series]/[formato de salida]/[periodo inicial]/[periodo final]/[idioma]
 
-os.chdir("C:\Users\Usuario\Desktop\ejemplo")
+Tal como se observa en la API, esta conformado por una sección para:
+- códigos de series
+- formato de salida
+- periodo inicial
+- periodo final
+- idioma
 
-enahodata(
-  modulos=["01","03","04"],
-  anios=["2022", "2023"],
-  descomprimir=True,
-  only_dta=True,
-  overwrite=True, 
-  output_dir="datos_ENAHO",
-  panel=False 
-)
+Esta información se encuentra en las tablas que comparten en el portal del BCRP.
 
-```
-Ejecutamos el codigo:
-```python
-python ejemplo.py
-```
-![enahodata](./img/resultados.PNG)
+<a href="https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/cuentas-monetarias"> 
+  <img src="https://i.ibb.co/v46qnJRJ/5138681890537057606.jpg">
+</a>
+<br>
+<br>
+Las secciones se detallan a continuación.
 
-Y se creara la siguiente estructura de carpetas, como resultado:
+### Códigos de series
 
-<img src="./img/tree.PNG" width="210" height="">
+>https://../../../../[__códigos de series__]/../../../..
 
-Donde:
-- **/modulo_01_2022_dta_only** 
-- **/modulo_01_2023_dta_only** 
-- **/modulo_03_2022_dta_only** 
-- **/modulo_03_2023_dta_only** 
-- **/modulo_04_2022_dta_only** 
-- **/modulo_04_2023_dta_only** 
->Son las carpetas donde se encuentran los dataset en formato `.dta`
+Los códigos de las series son un total de 16 446, los cuales están agrupadas en las siguientes categorías.
 
-- **/modulo_01_2022_extract** 
-- **/modulo_01_2023_extract** 
-- **/modulo_03_2022_extract** 
-- **/modulo_03_2023_extract** 
-- **/modulo_04_2022_extract** 
-- **/modulo_04_2023_extract** 
+Nro|Categoría de series|Cantidad|Porcentaje
+:-------|:-------|:-------|:-------
+01|Balanza comercial|674|4.10%
+02|Balanza de pagos|7|0.04%
+03|Balanza de pagos BPM5|995|6.05%
+04|Banco Central de Reserva|288|1.75%
+05|Bolsa internacional|1|0.01%
+06|Caja del tesoro|28|0.17%
+07|Cotizaciones internacionales|53|0.32%
+08|Cuenta financiera|119|0.72%
+09|Deuda externa|69|0.42%
+10|Deuda pública|206|1.25%
+11|Empresas bancarias|1 591|9.67%
+12|Entre 1930 a 1980|1 418|8.62%
+13|Expectativas empresariales|156|0.95%
+14|Expectativas Macroeconómicas|3|0.02%
+15|Exportaciones e importaciones|1 482|9.01%
+16|Gastos|274|1.67%
+17|Indicadores Internacionales|29|0.18%
+18|Indicadores de coyuntura|21|0.13%
+19|Inflación|99|0.60%
+20|Ingresos|283|1.72%
+21|Mercado de capitales|218|1.33%
+22|Mercado inmobiliario|28|0.17%
+23|Moneda y crédito|111|0.67%
+24|Operaciones de las empresas bancarias|106|0.64%
+25|Otras cuentas monetarias|303|1.84%
+26|Otros no categorizados|30|0.18%
+27|PBI gasto|134|0.81%
+28|PBI por sectores|538|3.27%
+29|PBI y demografía|48|0.29%
+30|Periodo colonial tardío|244|1.48%
+31|Periodo colonial temprano|289|1.76%
+32|Posición de activos y pasivos|86|0.52%
+33|Precios|12|0.07%
+34|Precios y tarifas|12|0.07%
+35|Presupuesto público|4|0.02%
+36|Primera centuria independiente|596|3.62%
+37|Producción|1 449|8.81%
+38|Remuneraciones y empleo|35|0.21%
+39|Renta de factores|36|0.22%
+40|Resultados de la balanza de pagos|104|0.63%
+41|Resultado económico|395|2.40%
+42|Sector público|1 195|7.27%
+43|Servicios|54|0.33%
+44|Sistema financiero|642|3.90%
+45|Sistemas de pagos|1 058|6.43%
+46|Sociedades creadoras de depósito|489|2.97%
+47|Tasas de interés|235|1.43%
+48|Tasas de interés internacionales|26|0.16%
+49|Tipo de cambio|12|0.07%
+50|Tipo de cambio de otras divisas|24|0.15%
+51|Tipo de cambio nominal|81|0.49%
+52|Tipo de cambio real|29|0.18%
+53|Términos de intercambio|26|0.16%
+54|Índice de reajuste diario|1|0.01%
 
->En estas carpetas se encuentran, la información descomprimida de la ENAHO, con toda la información que viene desde el portal de microdatos del INEI.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Nota
-- Cuando se active la opción `panel=True`, tener en cuenta que los datasets tienen un peso considerable. El proceso sera el mismo, la diferencia se encuentra en el tamaño de los archivos que se descarán.
-- Otro aspecto a tener en cuenta, los códigos a usar para la función debe ser los que pertenecen a la tabla de datos de panel, considerando el periodo de tiempo que son vigentes los codigos a usar.
 
-## IV. Como citar este repositorio
 
-Medrano, M., & Palomino, J. (2025). *ENAHODATA (versión 0.0.3) [Software]*. Zenodo. [https://doi.org/10.5281/zenodo.15029826](https://doi.org/10.5281/zenodo.15029826)
+### Built With
 
-## Licencia
+<a href="https://pandas.pydata.org/docs/#">
+  <img src="https://i.ytimg.com/vi/uFP-W_9UtfQ/maxresdefault.jpg" height=55> 
+</a>
+<br>
+<div style="background-color: white; width: 190px; height: 35px;">
+  <a href="https://openpyxl.readthedocs.io/en/stable/">
+    <img src="https://openpyxl.readthedocs.io/en/stable/_static/logo.png" alt="Logo de OpenPyXL">
+  </a>
+</div>
+<br>
+<a href="https://requests.readthedocs.io/en/latest/">
+  <img src="https://essentecla.com/wp-content/uploads/2022/03/python-request.jpeg" height=55> 
+</a>
+<br>
+<a href="https://tqdm.github.io/docs/tqdm/">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEKuR3U-H-sWOyabOO3uUbcv2OeXEysQt4QA&s" height=55> 
+</a>
 
-Este repositorio esta autorizado bajo la licencia MIT. Ver <a href="./LICENSE">LICENCIA</a> para mas detalles.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  (.venv) pip install usebcrp
+  ```
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```
+5. Change git remote url to avoid accidental pushes to base project
+   ```sh
+   git remote set-url origin github_username/repo_name
+   git remote -v # confirm the changes
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [x] Add Changelog
+- [x] Add back to top links
+- [ ] Add Additional Templates w/ Examples
+- [ ] Add "components" document to easily copy & paste sections of the readme
+- [ ] Multi-language Support
+    - [ ] Chinese
+    - [ ] Spanish
+
+See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Top contributors:
+
+<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
+</a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the Unlicense License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+
+Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+
+* [Choose an Open Source License](https://choosealicense.com)
+* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
+* [Malven's Grid Cheatsheet](https://grid.malven.co/)
+* [Img Shields](https://shields.io)
+* [GitHub Pages](https://pages.github.com)
+* [Font Awesome](https://fontawesome.com)
+* [React Icons](https://react-icons.github.io/react-icons/search)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors-anon/MaykolMedrano/enahodata_py
-[contributors-url]:https://github.com/MaykolMedrano/enahodata_py/graphs/contributors
-[forks-shield]:https://img.shields.io/github/forks/MaykolMedrano/enahodata_py
-[forks-url]: https://github.com/MaykolMedrano/enahodata_py/network/members
-[stars-shield]:https://img.shields.io/github/stars/MaykolMedrano/enahodata_py
-[stars-url]:https://github.com/MaykolMedrano/enahodata_py/stargazers
-[license-shield]: https://img.shields.io/github/license/MaykolMedrano/enahodata_py
-[license-url]: https://github.com/MaykolMedrano/enahodata_py/blob/master/LICENSE
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: https://i.ibb.co/DH1VSw5V/forRepo.jpg
+
+[Pandas]: https://pandas.pydata.org/static/img/pandas_white.svg
+[Pandas-url]: https://pandas.pydata.org/docs/
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
