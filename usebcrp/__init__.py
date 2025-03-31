@@ -29,8 +29,6 @@ class BCRP(Metadata, ParseDates, ConectionBCRP):
                     If True, print debug messages.
         sleep_sec : float, optional
                     Seconds to sleep after downloading to avoid overloading the server
-        text_inf  : str, optional
-                    This text is for searching the names and codes of series's BCRP
         """
         self.cachepath = cachepath
         self.verbose = verbose
@@ -101,8 +99,8 @@ class BCRP(Metadata, ParseDates, ConectionBCRP):
         df.attrs["series_metadata"] = meta
 
         if self.verbose:
-            print(f" - Detected series: {long_names}")
-            print(f" - Metadata (code -> name): {df.attrs['series_metadata']}")
+            print(f"\n - Detected series: {long_names}")
+            print(f"\n - Metadata (code -> name): {df.attrs['series_metadata']}")
 
         rename_map = dict(zip(df.columns.tolist(), series))
         df.rename(columns=rename_map, inplace=True)

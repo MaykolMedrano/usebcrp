@@ -39,31 +39,35 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#códigos-de-series">Códigos de series</a></li>
+        <li><a href="#formato-de-salida">Formato de salida</a></li>
+        <li><a href="#periodo-inicial-y-final">Periodo inicial y final</a></li>
+        <li><a href="#idioma">Idioma</a></li>
+        <li><a href="#construido-con">Construido con</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+    <li><a href="#instalación">Instalación</a></li>
+    <li><a href="#uso">Uso</a>
+    <ul>
+        <li><a href="#metadatos">I.- Consulta a los metadatos</a></li>
+        <li><a href="#installation">II.- Descarga de la información</a></li>
+        <li><a href="#installation">III.- Exportamos una tabla de variaciones</a></li>
+        <li><a href="#installation">IV.- Resultados</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#contribuidores">Contribuidores</a></li>
+    <li><a href="#licencia">Licencia</a></li>
+    <li><a href="#como-citar-este-repositorio">Como citar este repositorio</a></li>
+    <li><a href="#contacto">Contacto</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Acerca del proyecto
 
 ![Product Name Screen Shot][product-screenshot]
 
@@ -91,7 +95,11 @@ Las secciones se detallan a continuación.
 
 ### Códigos de series
 
->https://../../../../[__códigos de series__]/../../../..
+Este es un parámetro obligatorio que requiere una extensión maxima de diez. Se puede agregar varios códigos de series separados por un guión.
+
+En la estructura del API, la ubicación para ingresar los códigos de las series es la siguiente:
+
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/[__códigos de series__]/../../../..
 
 Los códigos de las series son un total de 16 446, los cuales están agrupadas en las siguientes categorías.
 
@@ -152,11 +160,74 @@ Nro|Categoría de series|Cantidad|Porcentaje
 53|Términos de intercambio|26|0.16%
 54|Índice de reajuste diario|1|0.01%
 
+Ejemplo
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01270PM
+
+### Formato de salida
+
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/../[__formato de salida__]/../../..
+
+Existen 7 formatos de salida disponibles para el API del BCRP y son:
+
+Formato | Código para API|ejemplo
+:-------|:-------|-------|
+HTML|../html|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/html
+GRÁFICO|../grafico|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/grafico
+XLS|../xls| https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/xls
+XML|../xml|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/xml
+JSON Y JSONP|../json|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/json
+TXT|../txt|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/txt
+CSV|../csv|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/csv
+
+
+### Periodo inicial y final
+
+La ubicación de estos parámetros en la estructura del API es la siguiente:
+
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/../../[__periodo inicial__]/[__periodo final__]/..
+
+Con este parámetro se indica el periodo de tiempo, de la consulta de datos que se realiza a la API. Si no se coloca ningún datoa en estos espacios, se entiende que la consulta se realizara para los datos actuales.
+
+Si se ingresa solo un periodo, la API respondera información solo de dicho periodo.
+
+Ejemplos
+
+- Un solo periodo
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/csv/2016-9
+
+- Un periodo inicial y final
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/grafico/2010-1/2016-9/esp
+
+- Sin periodo definido
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM
+
+
+### Idioma
+
+La ubicación del parámetro correspondiente al idioma, dentro del API es la siguiente:
+
+>https://estadisticas.bcrp.gob.pe/estadisticas/series/api/../../../../[__idioma__]
+
+La API del BCRP soporta dos idiomas:
+Idioma|Código|Ejemplo
+:-------|:-----------|:-------|
+Español|Sin necesidad de agregar algo|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM-PN01289PM/csv/2010-1/2016-9
+Ingles|../ing|https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01288PM/json/2010-1/2016-9/ing
+-----
+
+#### FUENTE
+
+_Esta sección se construyo en base a la información disponible del BCRP en las siguientes páginas_
+
+- [API para desarrolladores](https://estadisticas.bcrp.gob.pe/estadisticas/series/ayuda/api)
+- [Metadatos](https://estadisticas.bcrp.gob.pe/estadisticas/series/ayuda/metadatos)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-### Built With
+### Construido con
 
 <a href="https://pandas.pydata.org/docs/#">
   <img src="https://i.ytimg.com/vi/uFP-W_9UtfQ/maxresdefault.jpg" height=55> 
@@ -182,76 +253,264 @@ Nro|Categoría de series|Cantidad|Porcentaje
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Instalación
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Este proyecto puede ser instalado directamente a su entorno virtual de trabajo.
 
-### Prerequisites
+La instalación se puede realizar de la siguiente manera:
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  (.venv) pip install usebcrp
-  ```
+- Desde una terminal
 
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   (.venv) pip install usebcrp
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+
+- Desde Jupyter o Google Colaboratory
+   ```py
+   !pip install usebcrp
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+Ejecutando los códigos anteriores, automáticamente se realizara la instalación de los paquetes complementarios a __usebcrp__. 
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+### Uso
+-------
+<br>
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+La biblioteca de python, se puede usar de la siguiente manera:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+1.- Se puede consultar en los metadatos, el nombre de una variable que se quiera descargar la información.
+
+2.- Se puede descargar la información que expone el API del BCRP
+
+Es importante señalar, que para el uso de la biblioteca "usebcrp" no necesitamos realizar alguna modificación en la API, dado que el paquete automaticamente gestiona la construcción del API para realizar las consultas. Esto lo realiza de acuerdo a los parametros que ingresemos.
+
+
+### I.- Consulta a los metadatos
+
+Para realizar la consulta a los metadatos de la existencia de un indicador que pueda ser expuesta por la API, se procede de la siguiente manera.
+
+- Instanciamos la clase
+
+```py
+from usebcrp import BCRP
+
+client_bcrp = BCRP()
+```
+
+- Luego de instanciar la clase, hacemos uso del metodo browse(), en este método se puede poner el texto del nombre de cualquier indicador que se quiera filtrar.
+
+```py
+series = client_bcrp.browse("pesca")
+```
+
+- Luego hacemos una impresión del objeto y sus columnas.
+
+```py
+# Imprimimos las variables
+print(series.columns)
+
+# Imprimimos los datos
+print(series)
+```
+
+- Ejemplo completo
+
+```py
+from usebcrp import BCRP
+
+client_bcrp = BCRP()
+series = client_bcrp.browse("pesca")
+
+print(series.columns)
+
+print(series)
+```
+Este codigo se puede ejecutar en un archivo ejemplo.py llamandolo desde la terminal.
+
+```sh
+(.venv) python ejemplo.py
+```
+
+Los resultados mostrados son los siguientes:
+
+<img src=https://i.ibb.co/1Jsjr5p6/Shared-Screenshot.jpg>
+
+<img src="https://i.ibb.co/WvsyFc3C/Shared-Screenshot1.jpg">
+
+
+
+
+
+_Nota_: El objetivo de este proceso, se centra en conocer la existencia de un indicador que se quiere descargar desde la API del BCRP, realizando una consulta a los metados del BCRP.
+
+
+### II.- Descarga de la información
+
+Una vez que se tenga identificado el indicador que se quiere descagar, podemos solicitar la información para luego exportarlo en un formato determinado.
+
+- __Instanciamos la clase BCRP__
+
+En este aspecto, se debe mencionar que los atributos de la clase BCRP son:
+
+Atributos|Tipo de dato|Descripción|Valor por defecto
+:-------|:-------|:-------|:-------|
+__cachepath__|str, optional|Directory to cache API responses and export files.| None
+__verbose__|bool, optional|If True, print debug messages.|False
+__sleep_sec__|float, optional|Seconds to sleep after downloading to avoid overloading the server|1.0
+<br>
+
+Entonces vamos a instanciar la clase BCRP() de la siguiente manera:
+
+```py
+from usebcrp import BCRP
+
+client_bcrp = BCRP(cachepath="cache_bcrp", verbose=True)
+```
+
+Se instancia en client_bcrp la clase BCRP(), con los atributos cachepath="cache_bcrp" que indica la creación de una carpeta que lleva este nombre; y el atributo "verbose=True" que permite que se muestren el procedimiento. En esta situación, no se instancio "sleep_sec", sin embargo, por defecto toma el valor de "1.0".
+
+- __Se hace uso del metodo "stat()" de la clase BCRP__
+
+En esta etapa, se llama el método stat() para descargar la información que se identificó con ayuda del metodo browse() o simplemente que ya se tenia mapeado anteriormente.
+
+En este método, se puede ingresar el codigo de una serie o de varias series, asimismo, también se señala el periodo de tiempo que se quiere consultar.
+
+Los argumentos de la función stat() son:
+
+Argumentos|Tipo de variable|Descripción|Valor por defecto
+:-------|:-------|:-------|:-------|
+series|List|List of series codes to request||
+range|str, optional|Date range as a string|None
+<br>
+
+La lista de codigos de los indicadores que se quieren consultar, se deben poner entre comillas y separadas por una coma dentro de corchetes. Para el caso de range, se tiene que agregar el periodo de tiempo dentro de comillas y separadas por un espacio, empezando por el año seguidos por el mes. 
+
+```py
+...
+df_stat = client_bcrp.stat(series=["PN38706PM", "PN38707PM"], range="2013-1 2024-9")
+```
+
+Luego podemos imprimir los resultados.
+
+```py
+print("\n DataFrame from stat:")
+print(df_stat.head())
+```
+
+Resultados
+
+<img src="https://i.ibb.co/LDJ5pVCY/resultados.jpg">
+
+
+- __Exportamos los resultados obtenidos__
+
+Se hace uso del método export_df(), diseñado para exportar los datos en diferentes formatos como csv, xlsx y dta. Los argumentos del método son los siguientes:
+
+Argumentos|Tipo de variable|Descripción|Valor por defecto
+:-------|:-------|:-------|:-------|
+df|pd.DataFrame|DataFrame to export||
+filename|str|Base file name(without extensión)||
+fmt|str, optional|Export format: "csv", "xlsx", "dta"|"csv"|
+<br>
+
+Para exportar la información consultada, se ejecuta el siguiente código que es diferente para cada extensión.
+
+En formato .csv
+```py
+client_bcrp.export_df(df_stat, filename="data_stat", fmt="csv")
+```
+En formato .xlsx
+```py
+client_bcrp.export_df(df_stat, filename="data_stat", fmt="xlsx")
+```
+En formato .dta
+```py
+client_bcrp.export_df(df_stat, filename="data_stat", fmt="dta")
+```
+
+Los resultados de los códigos de exportación, se presentan a continuación:
+
+<img src="https://i.ibb.co/gLZKNdMY/Exportamos-Archivos.jpg">
+
+<br>
+
+- __Ejemplo completo__
+
+```py
+from usebcrp import BCRP
+
+client = BCRP(cachepath="cache_bcrp", verbose=True)
+df_stat = client.stat(series=["PN38706PM", "PN38707PM"], range="2013-1 2024-9")
+print("DataFrame from stat:")
+print(df_stat.head())
+
+client.export_df(df_stat, filename="data_stat", fmt="csv")
+client.export_df(df_stat, filename="data_stat", fmt="xlsx")
+client.export_df(df_stat, filename="data_stat", fmt="dta")
+```
+
+### III.- Exportamos una tabla de variaciones
+
+Para esta sección, se hara uso del método table() de la clase BCRP que tiene los siguientes argumentos:
+
+Argumentos|Tipo de variable|Descripción|Valor por defecto
+:-------|:-------|:-------|:-------|
+series|list|List of series codes to request.||
+range|str, optional|Date range as a string (e.g., "2013-1 2024-9").|None|
+names|list, optional|New names for the columns (must match the length of series).|None|
+freq|str, optional|Resampling frequency (e.g., "ME" for month end, "MS" for month start, "QE" for quearter end, "QS" for quarter start, "YE" for year end, "YS" for year start).|None|
+collapse|function, str, list, or dict, optional|Aggregation function for resampling. Required if freq is specified.|None|
+variation|int of str, optional| If an integer, the number of months to shift for percent change; otherwise, passed directly to pct_change.|None|
+resample_kwargs|dict, optional|Additional keyword arguments for DataFrame.resample.|None|
+agg_kwargs|dict, optional|Additional keyword arguments for DataFrame.aggregate.|None|
+
+<br>
+
+El código completo que hace uso del método table() es el siguiente:
+
+```py
+# Importamos la clase BCRP()
+from usebcrp import BCRP
+
+# Instanciamos la clase BCRP
+client_bcrp = BCRP(cachepath="cache_client_table_bcrp", verbose=True)
+
+# Señalamos los nombres de las columnas que exportamos
+names = ["IPC sin alimentos", "IPC Alimentos"]
+
+# Llamamos al método table()
+df_table = client_bcrp.table(
+    series=["PN38706PM", "PN38707PM"],
+    range="2013-1 2024-9",
+    names=names,
+    freq="ME",  # "ME" for month end; alternatives: "MS", "QE", "QS", "YE", "YS"
+    collapse="mean",
+    variation=1
+)
+
+# Exportamos los archivos
+client_bcrp.export_df(df_stat, filename="data_stat", fmt="csv")
+client_bcrp.export_df(df_stat, filename="data_stat", fmt="xlsx")
+client_bcrp.export_df(df_stat, filename="data_stat", fmt="dta")
+```
+
+### IV.- Resultados
+
+Los resultados se presentan a continuación
+
+<img src="https://i.ibb.co/tTjSyPDq/resultados-Carpeta.jpg">
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contribuidores
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -264,7 +523,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Top contributors:
+### Principales contribuidores:
 
 <a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
@@ -275,40 +534,34 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## License
+## Licencia
 
 Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ACKNOWLEDGMENTS -->
+## Como citar este repositorio
 
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
-## Contact
+## Contacto
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Jelsin Palomino - [@Linkedin](https://www.linkedin.com/in/jstpalomino/) - jstpalomino@hotmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Maykol Medrano - [@Linkedin](https://www.linkedin.com/in/maykolmedrano/) - maykolmedrano35@gmail.com
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 

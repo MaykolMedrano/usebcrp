@@ -2,8 +2,19 @@ import pathlib
 
 import setuptools
 
+# HERE = pathlib.Path(__file__).parent
+# README = (HERE / "README.md").read_text()
+
 HERE = pathlib.Path(__file__).parent
-README = (HERE / "README.md").read_text()
+
+try:
+    README = (HERE / "README.md").read_text(encoding="utf-8")
+except:
+    print("Error: No se pudo decodificar el archivo con UTF-8. Intentando con latin-1")
+    try:
+        README = (HERE / "README.md").read_text(encoding="latin-1")
+    except UnicodeDecodeError:
+        print("Error: No se pudo decodificar el archivo con latin-1")
 
 # from usebcrp.__version__ import __version__ as pkgVersion
 
