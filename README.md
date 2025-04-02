@@ -21,14 +21,14 @@
   <p align="center">
     Una biblioteca de Python que consume la API del Banco Central de Reservas del Perú (BCRP). Para descarga de series y rangos de tiempo determinados.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/MaykolMedrano/usebcrp"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/MaykolMedrano/usebcrp">View Demo</a>
     &middot;
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/MaykolMedrano/usebcrp/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/MaykolMedrano/usebcrp/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -512,21 +512,23 @@ Los resultados se presentan a continuación
 <!-- CONTRIBUTING -->
 ## Contribuidores
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Las contribuciones son lo que hace de la comunidad de código abierto un lugar increíble para aprender, inspirarse y crear. Cualquier contribución que hagas es **muy apreciada**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Si tienes alguna sugerencia para mejorar esto, por favor, bifurca el repositorio y crea una solicitud de extracción. También puedes simplemente abrir una incidencia con la etiqueta "mejora". ¡No olvides darle una estrella al proyecto! ¡Gracias de nuevo!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork el proyecto
+2. Crea tu Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push el Branch (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
 ### Principales contribuidores:
 
-<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
+<a href="https://github.com/MaykolMedrano/usebcrp/graphs/contributors">
+  <img src="https://avatars.githubusercontent.com/u/56744917?v=4" alt="contrib.rocks image" style="border-radius: 50%; width: 80px; height: 80px;"/>
+</a>
+<a href="https://github.com/MaykolMedrano/usebcrp/graphs/contributors">
+  <img src="https://avatars.githubusercontent.com/u/51071130?v=4" alt="contrib.rocks image" style="border-radius: 50%; width: 80px; height: 80px;"/>
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -536,7 +538,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## Licencia
 
-Distributed under the Unlicense License. See `LICENSE.txt` for more information.
+Distributed under the Unlicense License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
