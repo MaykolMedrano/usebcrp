@@ -20,7 +20,7 @@ except:
 
 setuptools.setup(
     name="usebcrp",
-    version="0.0.1",
+    version="v1.0.0",
     author="Jelsin Palomino & Maykol Medrano",
     author_email="maykolmedrano35@gmail.com & jstpalomino@hotmail.com",
     description="Python library that consumes the BCRP API, you can query the series and define the time range.",

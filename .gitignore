@@ -11,3 +11,7 @@ usebcrp.ipynb
 \__pycache__
 \.pytest_cache
 \usebcrp.egg-info
+
+# pypi
+\build
+\dist
